@@ -60,10 +60,10 @@ setInterval(() => {
     if(Math.floor(music.currentTime) === Math.floor(seekBar.max)){
         forwardBtn.click()
     }
-},500)
+}, 500)
 
 seekBar.addEventListener('change', () => {
-    music.currentMusic = seekBar.value    
+    music.currentTime = seekBar.value    
 })
 
 const playMusic = () => {
@@ -72,3 +72,22 @@ const playMusic = () => {
     disk.classList.add('play')
 }
 
+forwardBtn.addEventListener('click', () => {
+    if(currentMusic >= songs.length - 1){
+        currentMusic = 0
+    }else{
+        currentMusic++
+    }
+    setMusic(currentMusic)
+    playMusic()
+})
+
+backwardBtn.addEventListener('click', () => {
+    if(currentMusic <= 0){
+        currentMusic = songs.length-1
+    }else{
+        currentMusic--
+    }
+    setMusic(currentMusic)
+    playMusic()
+})
